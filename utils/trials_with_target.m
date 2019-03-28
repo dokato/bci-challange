@@ -10,7 +10,7 @@ function [trials] = trials_with_target(targetClass,trainLabels)
 indices = find(trainLabels==targetClass);
 trials = [];
 for ii=indices'
-    trials = [trials ((ii - 1)*80+1): ii*80];
+    trials = [trials ((ii - 1)*80+1): (ii*80)];
 end
 end
 
