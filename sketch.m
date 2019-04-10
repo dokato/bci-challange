@@ -1,3 +1,4 @@
+% Visual inspection of the data
 addpath('utils/')
 subj = '15';
 

@@ -26,6 +26,11 @@ data/
     ...
 ```
 
+## Riemanian approach
+
+Download and load `lib` folder from this package:
+https://github.com/alexandrebarachant/covariancetoolbox
+
 ## Materials
 
 http://www.medicon2019.org/scientific-challenge/
