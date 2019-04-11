@@ -26,6 +26,14 @@ data/
     ...
 ```
 
+Then (for given subject and session) you can simply call
+
+```matlab
+subj = '10';
+session = '01';
+data_load;
+```
+
 ## Riemanian approach
 
 Download and load `lib` folder from this package:
