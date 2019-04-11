@@ -7,7 +7,7 @@ clear all
 
 % data reading
 %%%%%%%%%%%%%%%%
-subj = '15';
+subj = '01';
 session = '01';
 data_load;
 %%%%%%%%%%%%%%%%
@@ -17,10 +17,10 @@ data_load;
 % we select all trials from blocks where target was displayed
 % X contais 8 channels, 350 points data
 % Y is target with 0/1
-[X, Y] = get_single_trial_target_data(4,trainData,trainTargets,trainLabels);
 
 % preprocessing
-
+X = trainData;
+Y = trainTargets;
 Xf = filter_data(X,[1,15],20);
 Xb = remove_baseline(Xf,[-0.2, -0.1]);
 
