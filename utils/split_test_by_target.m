@@ -1,6 +1,6 @@
 function [blockSignals] = split_test_by_target(block, testData,testEvents, runs_per_block, plotflag)
 %split_test_by_target - for given block it takes out all trials for given
-%enets and averages them out and returns as a matrix.
+%events and averages them out and returns as a matrix.
 %
 % INPUT:
 %   block - number of block to retrieve data from
@@ -9,7 +9,8 @@ function [blockSignals] = split_test_by_target(block, testData,testEvents, runs_
 %   runs_per_block - number of runs per block
 %   plotflag - flag sayin whether to plot or not avg over electrode subplots
 % OUTPUT:
-%   blockSignals - matrix with events signals averaged
+%   blockSignals - matrix with events signals averaged 
+%                  (events, channel, time)
 if nargin < 5
     plotflag = 0;
 end

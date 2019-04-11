@@ -8,18 +8,11 @@ clear all
 % data reading
 %%%%%%%%%%%%%%%%
 subj = '15';
-session = '02';
+session = '01';
+data_load;
 %%%%%%%%%%%%%%%%
-load(['data/SBJ' subj '/SBJ' subj '/S' session '/Test/testData.mat'])
-load(['data/SBJ' subj '/SBJ' subj '/S' session '/Test/testEvents.txt'])
-load(['data/SBJ' subj '/SBJ' subj '/S' session '/Test/runs_per_block.txt'])
-load(['data/SBJ' subj '/SBJ' subj '/S' session '/Train/trainData.mat'])
-load(['data/SBJ' subj '/SBJ' subj '/S' session '/Train/trainEvents.txt'])
-load(['data/SBJ' subj '/SBJ' subj '/S' session '/Train/trainLabels.txt'])
-load(['data/SBJ' subj '/SBJ' subj '/S' session '/Train/trainTargets.txt'])
 
-xtime = -0.2 + (1:350)/250;
-% ++++++++++++++++++++++++++++++ for target: 1
+% ++++++++++++++++++++++++++++++ for specific target
 
 % we select all trials from blocks where target was displayed
 % X contais 8 channels, 350 points data
@@ -59,16 +52,16 @@ end
 hold off;
 
 % compute covariance matrices for all trials
-covTrials = zeros(size(Xr,3),16,16);
+covTrials = zeros(16,16,size(Xr,3));
 prototypeX = mean(Xr(:,:,find(Yr==1)),3);
 for tr = 1:size(Xr,3)
     % TODO regularized cov ?
     % TODO temporal window selection ?
     trialTS = [prototypeX ; Xr(:,:,tr)];
-    covTrials(tr,:,:) = cov(squeeze(trialTS)');
+    covTrials(:,:,tr) = cov(squeeze(trialTS)');
 end
 
-[COV, P] = covariances_p300(Xr,Yr,'aaaa',{}); % this is normal matlab cov
+[COV, P] = covariances_p300(Xr,Yr,'aaaa',{}); % with 'aaaa' this is normal matlab cov
 
 geoMeanT = geodesic_mean(COV(:,:,Yr==1),'riemann');
 geoMeanNT = geodesic_mean(COV(:,:,Yr==0),'riemann');

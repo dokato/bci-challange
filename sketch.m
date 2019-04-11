@@ -1,16 +1,11 @@
 % Visual inspection of the data
 addpath('utils/')
-subj = '15';
 
-load(['data/SBJ' subj '/SBJ' subj '/S01/Test/testData.mat'])
-load(['data/SBJ' subj '/SBJ' subj '/S01/Test/testEvents.txt'])
-load(['data/SBJ' subj '/SBJ' subj '/S01/Test/runs_per_block.txt'])
-load(['data/SBJ' subj '/SBJ' subj '/S01/Train/trainData.mat'])
-load(['data/SBJ' subj '/SBJ' subj '/S01/Train/trainEvents.txt'])
-load(['data/SBJ' subj '/SBJ' subj '/S01/Train/trainLabels.txt'])
-load(['data/SBJ' subj '/SBJ' subj '/S01/Train/trainTargets.txt'])
-
-xtime = -0.2 + (1:350)/250;
+%%%%%%%%%%%%%%%%%
+subj = '01';
+session = '01';
+data_load;
+%%%%%%%%%%%%%%%%%
 
 subplot(211)
 plot(xtime, squeeze(mean(mean(trainData(:,:,trainTargets==1),3),1)))
