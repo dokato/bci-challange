@@ -1,7 +1,8 @@
 function [Ypred] = smooth_prediction(d)
 %SMOOTH_PREDICTION Summary of this function goes here
 % INPUT:
-%    d - matrix of distances to classes 1 -p300, 2 - no (trials, 2 ). 
+%    d - matrix of distances to classes. Column  1 - distance to p300
+%        column 2 - not target (trials, 2 ). 
 % OUTPUT:
 %    Ypred - smooth Ypred vector (trials,1)
 

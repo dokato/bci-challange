@@ -30,12 +30,30 @@ COV = covariances(Xtr);
 COVval = covariances(Xval);
 
 [W,Cg] = fgda(COV,Ytr,'riemann',{},'shcov',{});
-COV_gf = geodesic_filter(COV,Cg,W(:,1:2-1));
-COVval_gf = geodesic_filter(COVval,Cg,W(:,1:2-1));    
+COV_gf = geodesic_filter(COV,Cg,W(:,1:5-1));
+COVval_gf = geodesic_filter(COVval,Cg,W(:,1:5-1));    
 
-[Ypred, d, C] = mdm(COVval_gf,COV_gf,Ytr,'riemann','riemann');
+riem_feat = flatten_spd(COV_gf)';
+riem_feat_val = flatten_spd(COVval_gf)';
 
-Yps = smooth_prediction(d);
+cfg = [];
+cfg.strategy = 'dval';
+cfg.nsamples = 0.5;
+cfg.nfeatures = 0.2;
+cfg.nlearners = 500;
+cfg.stratify = 1;
+cfg.bootstrap = 1;
+cfg.learner = 'lda';
+cfg.learner_param = [];
+cfg.simplify = 0;
+ensemble_clf = train_ensemble(cfg,riem_feat,Ytr+1);
+
+[Ypred, d] = test_ensemble(ensemble_clf, riem_feat_val);
+Ypred = Ypred - 1;
+
+%[Ypred, d, C] = mdm(COVval_gf,COV_gf,Ytr,'riemann','riemann');
+
+%Yps = smooth_prediction(d);
 
 mean(Ypred==Yval)
 
