@@ -22,6 +22,8 @@ trainDataP = trainDatac;
 [Xtr, Ytr, Xval, Yval] = split_to_train_test(trainDataP,trainTargets,trainLabels);
 
 P = make_prototype(Xtr,Ytr);
+%polyP = make_prototype(Xtr,Ytr,'poly');
+%P = polyP;
 
 Xtr = merge_prototype_with_data(Xtr,P);
 Xval = merge_prototype_with_data(Xval,P);
@@ -30,8 +32,8 @@ COV = covariances(Xtr);
 COVval = covariances(Xval);
 
 [W,Cg] = fgda(COV,Ytr,'riemann',{},'shcov',{});
-COV_gf = geodesic_filter(COV,Cg,W(:,1:5-1));
-COVval_gf = geodesic_filter(COVval,Cg,W(:,1:5-1));    
+COV_gf = geodesic_filter(COV,Cg,W(:,1:8-1));
+COVval_gf = geodesic_filter(COVval,Cg,W(:,1:8-1));    
 
 % standard mdm procedure
 [Ypred, d, C] = mdm(COVval_gf,COV_gf,Ytr,'riemann','riemann');
@@ -45,8 +47,8 @@ riem_feat_val = flatten_spd(COVval_gf)';
 cfg = [];
 cfg.strategy = 'dval';
 cfg.nsamples = 0.4;
-cfg.nfeatures = 0.8;
-cfg.nlearners = 500;
+cfg.nfeatures = 0.6;
+cfg.nlearners = 400;
 cfg.stratify = 1;
 cfg.bootstrap = 1;
 cfg.learner = 'lda';
