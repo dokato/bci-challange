@@ -13,7 +13,7 @@ riem_feat_val = flatten_spd(COVtst_gf)';
 [Ypred, d] = test_ensemble(clf, riem_feat_val);
 Ypred = Ypred - 1;
 Yps = smooth_prediction(-d); % minus, because negative denotes p300 here
-Acc = mean(Yps == Ytst)
+Acc = mean(Yps == Ytst);
 
 end
 

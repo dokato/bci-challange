@@ -1,4 +1,4 @@
-function [Xtr,Ytr, Xval, Yval] = split_to_train_test(trainData, trainTargets,trainLabels, proportion)
+function [Xtr,Ytr, Xval, Yval, selectedBlocks] = split_to_train_test(trainData, trainTargets,trainLabels, proportion)
 %SPLIT_TO_TRAIN_TEST Splits data into training and test (validation) sets
 % INPUT:
 %    trainData - matrix with training data (channels, time points, trials)
@@ -9,6 +9,7 @@ function [Xtr,Ytr, Xval, Yval] = split_to_train_test(trainData, trainTargets,tra
 % OUTPUT:
 %    Xtr,Ytr, Xval, Yval - training and validation coming from trainData
 %                          and trainTargets
+%    selectedBlocks      - indices of selected blocks
 
 if nargin < 4
     proportion = 80;
@@ -47,4 +48,5 @@ Xtr  = trainData(:,:,~testIndices);
 Ytr  = trainTargets(~testIndices);
 Xval = trainData(:,:,testTrials);
 Yval = trainTargets(testTrials);
+selectedBlocks = prevCands;
 end

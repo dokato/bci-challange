@@ -1,6 +1,7 @@
 function [predTargets] = predict_target(events, Ybin, runs_per_block)
 %predict_target - predict a final target per block based on binary ERP
-%existance prediction.
+%existance prediction. The most frequent occurence of event per block wins.
+%
 % INPUT:
 %    events - vector with event displayed on the screen
 %    Ybin - binary prediction of ERP existence
