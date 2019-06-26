@@ -7,13 +7,15 @@ function [prototype] = make_prototype(data,Y,type)
 % OUTPUT:
 %    prototype - matrix (channels, time points)
 if nargin < 3
-    type = 'mean';
+    type = 'tmean';
 end
 
 poly_order = 8;
 
 if strcmp(type,'mean')
     prototype = mean(data(:,:,Y==1),3);
+elseif strcmp(type,'tmean')
+    prototype = trimmean(data(:,:,Y==1),10,3);
 elseif strcmp(type,'poly')
     prototype = mean(data(:,:,Y==1),3);
     xx = 1:size(prototype,2);
