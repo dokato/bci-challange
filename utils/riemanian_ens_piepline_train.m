@@ -3,7 +3,7 @@ function [ensemble_clf, P, Cg, W] = riemanian_ens_piepline_train(Xtr, Ytr, cfg)
     P = make_prototype(Xtr,Ytr);
     
     Xtr = merge_prototype_with_data(Xtr,P);
-    COV = covariances(Xtr);
+    COV = covariances(Xtr,'shcov');
     [W,Cg] = fgda(COV,Ytr,'riemann',{},'shcov',{});
     COV_gf = geodesic_filter(COV,Cg,W(:,1:16-1));
 

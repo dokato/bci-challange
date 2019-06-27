@@ -6,7 +6,7 @@ clear all
 % data reading
 %%%%%%%%%%%%%%%%
 subj = '11';
-session = '01';
+session = '03';
 data_load;
 %%%%%%%%%%%%%%%%
 
@@ -29,7 +29,7 @@ cfg.simplify = 0;
 %% Different preprocessing methods
 
 %1 all electrodes broad band
-trainDataf = filter_data(trainData,[1,15],20);
+trainDataf = filter_data(trainData,[1,16],20);
 trainDatab = remove_baseline(trainDataf,[-0.2, 0.0]);
 trainDatac = select_time_window(trainDatab, [0.0, 0.6]);
 trainData1 = trainDatac;
@@ -139,4 +139,6 @@ Yval = Y(testIndices);
 bigD = d1+d2+d3+d4+d5+d6+d7+d8;
 
 Yps = smooth_prediction(-bigD);
-Acc = mean(Yps == Yval);
+Acc = mean(Yps == Yval)
+
+[p,r,f1] = get_precision_recall(Yps, Yval)

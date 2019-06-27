@@ -10,8 +10,8 @@ data_load;
 
 
 % data preprocessing
-trainDataf = filter_data(trainData,[1,15],20);
-testDataf = filter_data(testData,[1,15],20);
+trainDataf = filter_data(trainData,[1,16],20);
+testDataf = filter_data(testData,[1,16],20);
 trainDatab = remove_baseline(trainDataf,[-0.2, 0.0]);
 testDatab = remove_baseline(testDataf,[-0.2, 0.0]);
 trainDatac = select_time_window(trainDatab, [0.0, 0.6]);
@@ -43,7 +43,7 @@ COVtest_gf = geodesic_filter(COVtest,Cg,W(:,1:16-1));
 % standard mdm procedure
 [Ypred, d, C] = mdm(COVtest_gf,COV_gf,Ytr,'riemann','riemann');
 Yps = smooth_prediction(d);
-mdmTargPred = predict_target(testEvents, Yps, runs_per_block);
+mdmTargPred = predict_accumulative(testEvents, d, runs_per_block);
 
 % ensemble of riemanniam features
 riem_feat = flatten_spd(COV_gf)';

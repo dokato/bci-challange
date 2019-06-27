@@ -3,7 +3,7 @@ function [Yps, Acc, d] = riemanian_ens_piepline_test(Xtst, Ytst, clf, P, Cg, W)
 
 Xtst = merge_prototype_with_data(Xtst,P);
 
-COVtst = covariances(Xtst);
+COVtst = covariances(Xtst,'shcov');
 
 COVtst_gf = geodesic_filter(COVtst,Cg,W(:,1:16-1));
 
