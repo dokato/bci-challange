@@ -21,6 +21,9 @@ for i = 1:NoSamp*NoSub
     tmp = ceil(i/NoSamp);
     S((tmp-1)*NoSamp+1:tmp*NoSamp,i) = R((tmp-1)*NoSamp+1:tmp*NoSamp,i); 
 end
+
+S = S +eye(size(S,1))*trace(S)*0.001;
+
 %% obtain CCA solutions 
 [tempW,~]=eigs((R-S),S,K);
 W = zeros(NoSamp,K,NoSub);
