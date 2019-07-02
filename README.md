@@ -39,6 +39,20 @@ data_load;
 Download and load `lib` folder from this package:
 https://github.com/alexandrebarachant/covariancetoolbox
 
+## The best model
+
+Our best models consists on combined ensemble approach with Riemanian features. Simplified steps are described below. For details, look at the code.
+
+1. Make ensemble of features: different time windows size, different low-pass filters, subset of electrodes.
+2. Create prototype (template) of the ERP response, as the trimmed mean over trials from single session of a participant.
+3. Concatenate prototype with single trial signal.
+4. Compute covariances (with shrinkage) and transform them to Riemanian space.
+5. Calculate FGDA filters and perform geodesic filtering.
+6. Take upper diagonal of resulting 2D features and train ensemble of LDA classifiers.
+7. Perform cumulative probability vote per particular class (ERP or not).
+
+To run the prediction of the best model, call simply: `createOutput.m`.
+
 ## Materials
 
 http://www.medicon2019.org/scientific-challenge/
