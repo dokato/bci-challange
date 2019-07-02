@@ -34,10 +34,19 @@ session = '01';
 data_load;
 ```
 
-## Riemanian approach
+
+## Dependencies
+
+You need to add to your paths the following packages.
+
+### Riemanian approach
 
 Download and load `lib` folder from this package:
 https://github.com/alexandrebarachant/covariancetoolbox
+
+### Classification
+Classification was done using ensemble implementation from the following package:
+https://github.com/treder/MVPA-Light
 
 ## The best model
 
