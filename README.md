@@ -2,7 +2,7 @@
 
 ## Reading data
 
-In order to load the data such as `scratch.m` script does it, you need to have the following file structure:
+In order to load the data such as `sketch.m` script does it, you need to have the following file structure:
 
 ```
 sketch.R
