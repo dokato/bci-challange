@@ -1,11 +1,10 @@
 # bci-challange
 
-## Reading data
+## Data structure
 
-In order to load the data such as `sketch.m` script does it, you need to have the following file structure:
+You need to have the following file structure:
 
 ```
-sketch.R
 utils/
    split_test_by_target.m
    ...
@@ -33,7 +32,7 @@ subj = '10';
 session = '01';
 data_load;
 ```
-
+(data available here: http://www.medicon2019.org/scientific-challenge/)
 
 ## Dependencies
 
@@ -50,7 +49,7 @@ https://github.com/treder/MVPA-Light
 
 ## The best model
 
-Our best models consists on combined ensemble approach with Riemanian features. Simplified steps are described below. For details, look at the code.
+Our best model consists on combined ensemble approach with Riemanian features. Simplified steps are described below. For details, look at the code.
 
 1. Make ensemble of features: different time windows size, different low-pass filters, subset of electrodes.
 2. Create prototype (template) of the ERP response, as the trimmed mean over trials from single session of a participant.
