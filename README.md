@@ -47,6 +47,10 @@ https://github.com/alexandrebarachant/covariancetoolbox
 Classification was done using ensemble implementation from the following package:
 https://github.com/treder/MVPA-Light
 
+## How to use it?
+
+`sketch` script consist of different modelling approaches. In general we recommend running (reading) the scripts from `make_prediction.m`, `make_mult_prediction.m`  or `createOutput.m`.
+
 ## The best model
 
 Our best model consists on combined ensemble approach with Riemanian features. Simplified steps are described below. For details, look at the code.
